@@ -1,214 +1,94 @@
 "use client";
 
-import ThemeToggle from "@/components/ThemeToggle";
 import Product3D from "@/components/Product3D";
-
-const categories = [
-  { icon: "📚", name: "Books" },
-  { icon: "💻", name: "Tech" },
-  { icon: "👕", name: "Fashion" },
-  { icon: "🍔", name: "Food" },
-  { icon: "🎮", name: "Games" },
-  { icon: "📦", name: "Others" },
-];
 
 const products = [
   {
-    name: "Programming Book",
-    price: 180,
-    seller: "Nate",
-    image3D: "https://raw.githubusercontent.com/Tarikul-Islam-Anik/Animated-Fluent-Emojis/master/Emojis/Objects/Books.png",
+    name: "เสื้อช็อปนักศึกษา",
+    price: 250,
+    seller: "เจมส์",
+    category: "เสื้อผ้า",
+    condition: "มือสองสภาพดี",
+    rating: 4.8,
+    // รูป 3D เสื้อผ้า
+    image3D: "https://raw.githubusercontent.com/Tarikul-Islam-Anik/Animated-Fluent-Emojis/master/Emojis/Objects/Running%20Shirt.png",
   },
   {
-    name: "Wireless Mouse",
-    price: 299,
-    seller: "Mark",
-    image3D: "https://raw.githubusercontent.com/Tarikul-Islam-Anik/Animated-Fluent-Emojis/master/Emojis/Objects/Computer%20Mouse.png",
+    name: "หูฟัง Bluetooth",
+    price: 590,
+    seller: "นนท์",
+    category: "อุปกรณ์ไอที",
+    condition: "มือสองสภาพดี",
+    rating: 4.8,
+    // รูป 3D หูฟัง
+    image3D: "https://raw.githubusercontent.com/Tarikul-Islam-Anik/Animated-Fluent-Emojis/master/Emojis/Objects/Headphone.png",
   },
   {
-    name: "College Hoodie",
-    price: 450,
-    seller: "Jane",
-    image3D: "https://raw.githubusercontent.com/Tarikul-Islam-Anik/Animated-Fluent-Emojis/master/Emojis/Objects/Coat.png",
-  },
-  {
-    name: "Gaming Keyboard",
-    price: 790,
-    seller: "Beam",
-    image3D: "https://raw.githubusercontent.com/Tarikul-Islam-Anik/Animated-Fluent-Emojis/master/Emojis/Objects/Keyboard.png",
+    name: "กระเป๋าเป้",
+    price: 350,
+    seller: "มิน",
+    category: "แฟชั่น",
+    condition: "มือสองสภาพดี",
+    rating: 4.8,
+    // รูป 3D กระเป๋า
+    image3D: "https://raw.githubusercontent.com/Tarikul-Islam-Anik/Animated-Fluent-Emojis/master/Emojis/Objects/Backpack.png",
   },
 ];
 
 export default function HomePage() {
   return (
-    <main className="home-page">
-
-      {/* Navbar */}
-      <header className="navbar">
-        <div className="brand">
-          <div className="brand-logo">🛍️</div>
-          <span>MarketPlace</span>
-        </div>
-
-        <div className="nav-actions">
-          <ThemeToggle />
-
-          <button className="icon-button">
-            🛒
-          </button>
-
-          <button className="profile-button">
-            👤
-          </button>
-        </div>
-      </header>
-
-      {/* Hero */}
-      <section className="hero">
-        <div className="hero-text">
-          <span className="badge">COLLEGE MARKETPLACE</span>
-
-          <h1>
-            Buy & Sell
-            <br />
-            <span>Within Your Campus.</span>
-          </h1>
-
-          <p>
-            Find great products from students around your college.
-            Sell your unused stuff easily.
-          </p>
-        </div>
-
-        {/* Search */}
-        <div className="search-box">
-          <span>🔍</span>
-          <input
-            type="text"
-            placeholder="Search products..."
-          />
-        </div>
-      </section>
-
-      {/* Categories */}
-      <section className="section">
-        <div className="section-header">
-          <h2>Categories</h2>
-          <button className="view-all">
-            View all →
-          </button>
-        </div>
-
-        <div className="categories">
-          {categories.map((category) => (
-            <button
-              className="category-card"
-              key={category.name}
-            >
-              <div className="category-icon">
-                {category.icon}
-              </div>
-
-              <span>{category.name}</span>
-            </button>
-          ))}
-        </div>
-      </section>
-
-      {/* Products */}
-      <section className="section">
-        <div className="section-header">
-          <div>
-            <h2>Recommended</h2>
-            <p className="section-subtitle">
-              Popular products around campus
-            </p>
-          </div>
-
-          <button className="view-all">
-            View all →
-          </button>
-        </div>
-
-        <div className="product-grid">
-          {products.map((product) => (
-            <article
-              className="product-card overflow-hidden"
-              key={product.name}
-            >
-              <div className="product-image relative w-full h-48">
+    <main className="p-6 bg-[#f4f7f4] min-h-screen">
+      <div className="grid grid-cols-1 md:grid-cols-3 gap-6 max-w-5xl mx-auto">
+        {products.map((product) => (
+          <article key={product.name} className="bg-white rounded-3xl p-4 shadow-sm border border-slate-100 flex flex-col justify-between">
+            <div>
+              {/* ส่วนแสดงผลรูป 3D พร้อมพื้นหลังเขียวพาสเทลแบบในรูป */}
+              <div className="relative w-full h-52 mb-4">
                 <Product3D imageUrl={product.image3D} alt={product.name} />
 
-                <button className="favorite absolute top-3 right-3 z-10">
+                {/* Badge แท็กหมวดหมู่มุมซ้ายบน */}
+                <span className="absolute top-3 left-3 bg-white/70 backdrop-blur-md px-3 py-1 rounded-full text-xs font-semibold text-slate-700">
+                  {product.category}
+                </span>
+
+                {/* ปุ่ม Favorite มุมขวาบน */}
+                <button className="absolute top-3 right-3 w-8 h-8 bg-white/80 backdrop-blur-md rounded-full flex items-center justify-center text-slate-600 hover:bg-white transition-all">
                   ♡
                 </button>
+
+                {/* Badge สภาพสินค้ามุมซ้ายล่าง */}
+                <span className="absolute bottom-3 left-3 bg-[#2D5A3C] text-white text-[10px] px-2.5 py-1 rounded-md font-medium">
+                  {product.condition}
+                </span>
               </div>
 
-              <div className="product-info">
-                <h3>{product.name}</h3>
-
-                <p className="seller">
-                  Sold by {product.seller}
-                </p>
-
-                <div className="product-bottom">
-                  <strong>฿{product.price}</strong>
-
-                  <button className="add-button">
-                    +
-                  </button>
-                </div>
+              {/* รายละเอียดสินค้า */}
+              <div className="flex justify-between items-start mb-1">
+                <h3 className="font-bold text-lg text-slate-800">{product.name}</h3>
+                <span className="text-xs text-amber-500 font-semibold flex items-center gap-0.5">
+                  ★ {product.rating}
+                </span>
               </div>
-            </article>
-          ))}
-        </div>
-      </section>
 
-      {/* Sell Banner */}
-      <section className="sell-banner">
-        <div>
-          <span>💰</span>
+              <p className="text-xs text-slate-400 mb-4">
+                ขายโดย {product.seller}
+              </p>
+            </div>
 
-          <div>
-            <h2>Have something to sell?</h2>
-            <p>
-              Turn your unused items into extra cash.
-            </p>
-          </div>
-        </div>
+            {/* ส่วนราคาและปุ่มกดดูสินค้า */}
+            <div className="flex items-center justify-between pt-2 border-t border-slate-50">
+              <div>
+                <span className="text-xs text-slate-400 block">ราคา</span>
+                <strong className="text-xl font-bold text-slate-900">฿{product.price}</strong>
+              </div>
 
-        <button>
-          + Sell Product
-        </button>
-      </section>
-
-      {/* Mobile Bottom Navigation */}
-      <nav className="bottom-nav">
-        <button className="active">
-          <span>⌂</span>
-          Home
-        </button>
-
-        <button>
-          <span>⌕</span>
-          Search
-        </button>
-
-        <button className="sell-button">
-          <span>＋</span>
-        </button>
-
-        <button>
-          <span>🛒</span>
-          Cart
-        </button>
-
-        <button>
-          <span>👤</span>
-          Profile
-        </button>
-      </nav>
-
+              <button className="bg-[#E2EFE0] text-[#3B6645] hover:bg-[#d2e5cf] text-xs font-bold px-4 py-2.5 rounded-xl transition-all flex items-center gap-1">
+                ดูสินค้า →
+              </button>
+            </div>
+          </article>
+        ))}
+      </div>
     </main>
   );
 }
