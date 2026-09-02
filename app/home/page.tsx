@@ -1,15 +1,7 @@
 "use client";
 
-import dynamic from "next/dynamic";
 import ThemeToggle from "@/components/ThemeToggle";
-
-// โหลด 3D Component แบบ Dynamic (Client-side Rendering Only)
-const Product3D = dynamic(() => import("@/components/Product3D"), {
-  ssr: false,
-  loading: () => (
-    <div className="w-full h-full bg-slate-800/20 animate-pulse rounded-lg" />
-  ),
-});
+import Product3D from "@/components/Product3D";
 
 const categories = [
   { icon: "📚", name: "Books" },
@@ -20,37 +12,38 @@ const categories = [
   { icon: "📦", name: "Others" },
 ];
 
-// เพิ่ม property color ให้แต่ละสินค้า เพื่อใช้แสดงผล 3D
+// ใช้รูปภาพ Microsoft Fluent 3D Emoji ตามประเภทสินค้า
 const products = [
   {
     name: "Programming Book",
     price: 180,
     seller: "Nate",
-    color: "#ff5964", // สีแดงส้ม
+    image3D: "https://raw.githubusercontent.com/Tarikul-Islam-Anik/Animated-Fluent-Emojis/master/Emojis/Objects/Books.png",
   },
   {
     name: "Wireless Mouse",
     price: 299,
     seller: "Mark",
-    color: "#35a7ff", // สีฟ้า
+    image3D: "https://raw.githubusercontent.com/Tarikul-Islam-Anik/Animated-Fluent-Emojis/master/Emojis/Objects/Computer%20Mouse.png",
   },
   {
     name: "College Hoodie",
     price: 450,
     seller: "Jane",
-    color: "#38b000", // สีเขียว
+    image3D: "https://raw.githubusercontent.com/Tarikul-Islam-Anik/Animated-Fluent-Emojis/master/Emojis/Objects/Running%20Shirt.png",
   },
   {
     name: "Gaming Keyboard",
     price: 790,
     seller: "Beam",
-    color: "#ffca3a", // สีเหลือง
+    image3D: "https://raw.githubusercontent.com/Tarikul-Islam-Anik/Animated-Fluent-Emojis/master/Emojis/Objects/Keyboard.png",
   },
 ];
 
 export default function HomePage() {
   return (
     <main className="home-page">
+
       {/* Navbar */}
       <header className="navbar">
         <div className="brand">
@@ -75,8 +68,8 @@ export default function HomePage() {
             <span>Within Your Campus.</span>
           </h1>
           <p>
-            Find great products from students around your college. Sell your
-            unused stuff easily.
+            Find great products from students around your college.
+            Sell your unused stuff easily.
           </p>
         </div>
 
@@ -116,11 +109,12 @@ export default function HomePage() {
 
         <div className="product-grid">
           {products.map((product) => (
-            <article className="product-card" key={product.name}>
-              {/* เปลี่ยนตรงนี้: นำ Product3D มาวางแทน Text Emoji เดิม */}
-              <div className="product-image relative w-full h-48 overflow-hidden rounded-t-xl">
-                <Product3D color={product.color} />
-                <button className="favorite absolute top-2 right-2 z-10">
+            <article className="product-card overflow-hidden" key={product.name}>
+              
+              {/* ส่วนรูป 3D Emoji */}
+              <div className="product-image relative w-full h-48">
+                <Product3D imageUrl={product.image3D} alt={product.name} />
+                <button className="favorite absolute top-3 right-3 z-10">
                   ♡
                 </button>
               </div>
@@ -154,25 +148,22 @@ export default function HomePage() {
       {/* Mobile Bottom Navigation */}
       <nav className="bottom-nav">
         <button className="active">
-          <span>⌂</span>
-          Home
+          <span>⌂</span> Home
         </button>
         <button>
-          <span>⌕</span>
-          Search
+          <span>⌕</span> Search
         </button>
         <button className="sell-button">
           <span>＋</span>
         </button>
         <button>
-          <span>🛒</span>
-          Cart
+          <span>🛒</span> Cart
         </button>
         <button>
-          <span>👤</span>
-          Profile
+          <span>👤</span> Profile
         </button>
       </nav>
+
     </main>
   );
 }
