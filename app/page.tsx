@@ -2,37 +2,51 @@
 
 import { useEffect } from "react";
 import { useRouter } from "next/navigation";
-import Product3D from "@/components/Product3D";
+import Product3D from "./components/Product3D";
 
-export default function SplashScreen() {
+export default function SplashPage() {
   const router = useRouter();
 
   useEffect(() => {
+    router.prefetch("/home");
     const timer = setTimeout(() => {
-      router.push("/home");
-    }, 2200);
-
+      router.replace("/home");
+    }, 1900);
     return () => clearTimeout(timer);
   }, [router]);
 
   return (
-    <main className="splash flex flex-col items-center justify-center min-h-screen bg-[#1E293B] text-white">
-      <div className="splash-content text-center flex flex-col items-center">
-        
-        {/* เรียกใช้ Product3D แบบส่ง imageUrl เหมือนหน้า Home */}
-        <div className="w-36 h-36 mb-4">
-          <Product3D 
-            imageUrl="https://raw.githubusercontent.com/Tarikul-Islam-Anik/Animated-Fluent-Emojis/master/Emojis/Objects/Shopping%20Bags.png" 
-            alt="MarketPlace Logo" 
+    <main
+      className="flex min-h-dvh flex-col items-center justify-center gap-6 px-6 text-center"
+      style={{ background: "var(--bg)" }}
+    >
+      <div className="[animation-name:splash-pop] [animation-duration:0.7s] [animation-timing-function:cubic-bezier(0.34,1.56,0.64,1)] [animation-fill-mode:both]">
+        <Product3D emoji="🛍️" size={72} />
+      </div>
+
+      <div
+        className="[animation-name:splash-pop] [animation-delay:0.15s] [animation-duration:0.7s] [animation-timing-function:cubic-bezier(0.34,1.56,0.64,1)] [animation-fill-mode:both]"
+      >
+        <h1 className="font-[family-name:var(--font-display)] text-3xl font-semibold tracking-tight">
+          ตลาดนัดแคมปัส
+        </h1>
+        <p className="mt-2 text-sm" style={{ color: "var(--text-muted)" }}>
+          ซื้อขายในรั้วมหาวิทยาลัย นัดรับง่าย ไม่ต้องส่งไกล
+        </p>
+      </div>
+
+      <div className="mt-2 flex gap-1.5" aria-hidden>
+        {[0, 0.15, 0.3].map((delay) => (
+          <span
+            key={delay}
+            className="h-2 w-2 rounded-full [animation-name:dot-bounce] [animation-iteration-count:infinite]"
+            style={{
+              background: "var(--color-poster-yellow)",
+              animationDuration: "1.1s",
+              animationDelay: `${delay}s`,
+            }}
           />
-        </div>
-
-        <h1 className="text-3xl font-bold mb-1">MarketPlace</h1>
-        <p className="text-slate-400 text-sm mb-6">College Marketplace</p>
-
-        <div className="loading w-36 h-1.5 bg-slate-800 rounded-full overflow-hidden">
-          <div className="loading-bar w-full h-full bg-[#82C47C] animate-pulse" />
-        </div>
+        ))}
       </div>
     </main>
   );
