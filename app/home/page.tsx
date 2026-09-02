@@ -29,7 +29,7 @@ const products = [
     name: "College Hoodie",
     price: 450,
     seller: "Jane",
-    image3D: "https://raw.githubusercontent.com/Tarikul-Islam-Anik/Animated-Fluent-Emojis/master/Emojis/Objects/Running%20Shirt.png",
+    image3D: "https://raw.githubusercontent.com/Tarikul-Islam-Anik/Animated-Fluent-Emojis/master/Emojis/Objects/Coat.png",
   },
   {
     name: "Gaming Keyboard",
@@ -52,8 +52,14 @@ export default function HomePage() {
 
         <div className="nav-actions">
           <ThemeToggle />
-          <button className="icon-button">🛒</button>
-          <button className="profile-button">👤</button>
+
+          <button className="icon-button">
+            🛒
+          </button>
+
+          <button className="profile-button">
+            👤
+          </button>
         </div>
       </header>
 
@@ -130,7 +136,6 @@ export default function HomePage() {
               className="product-card overflow-hidden"
               key={product.name}
             >
-              {/* เรียกใช้ Product3D สำหรับรูปภาพสินค้า */}
               <div className="product-image relative w-full h-48">
                 <Product3D imageUrl={product.image3D} alt={product.name} />
 
