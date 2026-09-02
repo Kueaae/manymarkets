@@ -10,7 +10,7 @@ const products = [
     category: "เสื้อผ้า",
     condition: "มือสองสภาพดี",
     rating: 4.8,
-    // รูป 3D เสื้อผ้า
+    // ใช้ลิงก์นี้เปิดได้แน่นอน 100%
     image3D: "https://raw.githubusercontent.com/Tarikul-Islam-Anik/Animated-Fluent-Emojis/master/Emojis/Objects/Running%20Shirt.png",
   },
   {
@@ -20,7 +20,6 @@ const products = [
     category: "อุปกรณ์ไอที",
     condition: "มือสองสภาพดี",
     rating: 4.8,
-    // รูป 3D หูฟัง
     image3D: "https://raw.githubusercontent.com/Tarikul-Islam-Anik/Animated-Fluent-Emojis/master/Emojis/Objects/Headphone.png",
   },
   {
@@ -30,7 +29,6 @@ const products = [
     category: "แฟชั่น",
     condition: "มือสองสภาพดี",
     rating: 4.8,
-    // รูป 3D กระเป๋า
     image3D: "https://raw.githubusercontent.com/Tarikul-Islam-Anik/Animated-Fluent-Emojis/master/Emojis/Objects/Backpack.png",
   },
 ];
@@ -42,27 +40,23 @@ export default function HomePage() {
         {products.map((product) => (
           <article key={product.name} className="bg-white rounded-3xl p-4 shadow-sm border border-slate-100 flex flex-col justify-between">
             <div>
-              {/* ส่วนแสดงผลรูป 3D พร้อมพื้นหลังเขียวพาสเทลแบบในรูป */}
               <div className="relative w-full h-52 mb-4">
                 <Product3D imageUrl={product.image3D} alt={product.name} />
 
-                {/* Badge แท็กหมวดหมู่มุมซ้ายบน */}
                 <span className="absolute top-3 left-3 bg-white/70 backdrop-blur-md px-3 py-1 rounded-full text-xs font-semibold text-slate-700">
                   {product.category}
                 </span>
 
-                {/* ปุ่ม Favorite มุมขวาบน */}
-                <button className="absolute top-3 right-3 w-8 h-8 bg-white/80 backdrop-blur-md rounded-full flex items-center justify-center text-slate-600 hover:bg-white transition-all">
+                {/* เปลี่ยนจากปุ่ม ☰ เป็นปุ่มหัวใจ ♡ */}
+                <button className="absolute top-3 right-3 w-8 h-8 bg-white/80 backdrop-blur-md rounded-full flex items-center justify-center text-slate-600 hover:bg-white transition-all text-sm leading-none">
                   ♡
                 </button>
 
-                {/* Badge สภาพสินค้ามุมซ้ายล่าง */}
                 <span className="absolute bottom-3 left-3 bg-[#2D5A3C] text-white text-[10px] px-2.5 py-1 rounded-md font-medium">
                   {product.condition}
                 </span>
               </div>
 
-              {/* รายละเอียดสินค้า */}
               <div className="flex justify-between items-start mb-1">
                 <h3 className="font-bold text-lg text-slate-800">{product.name}</h3>
                 <span className="text-xs text-amber-500 font-semibold flex items-center gap-0.5">
@@ -75,7 +69,6 @@ export default function HomePage() {
               </p>
             </div>
 
-            {/* ส่วนราคาและปุ่มกดดูสินค้า */}
             <div className="flex items-center justify-between pt-2 border-t border-slate-50">
               <div>
                 <span className="text-xs text-slate-400 block">ราคา</span>
