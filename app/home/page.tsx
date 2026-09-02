@@ -12,7 +12,6 @@ const categories = [
   { icon: "📦", name: "Others" },
 ];
 
-// ใช้รูปภาพ Microsoft Fluent 3D Emoji ตามประเภทสินค้า
 const products = [
   {
     name: "Programming Book",
@@ -62,11 +61,13 @@ export default function HomePage() {
       <section className="hero">
         <div className="hero-text">
           <span className="badge">COLLEGE MARKETPLACE</span>
+
           <h1>
             Buy & Sell
             <br />
             <span>Within Your Campus.</span>
           </h1>
+
           <p>
             Find great products from students around your college.
             Sell your unused stuff easily.
@@ -76,7 +77,10 @@ export default function HomePage() {
         {/* Search */}
         <div className="search-box">
           <span>🔍</span>
-          <input type="text" placeholder="Search products..." />
+          <input
+            type="text"
+            placeholder="Search products..."
+          />
         </div>
       </section>
 
@@ -84,13 +88,21 @@ export default function HomePage() {
       <section className="section">
         <div className="section-header">
           <h2>Categories</h2>
-          <button className="view-all">View all →</button>
+          <button className="view-all">
+            View all →
+          </button>
         </div>
 
         <div className="categories">
           {categories.map((category) => (
-            <button className="category-card" key={category.name}>
-              <div className="category-icon">{category.icon}</div>
+            <button
+              className="category-card"
+              key={category.name}
+            >
+              <div className="category-icon">
+                {category.icon}
+              </div>
+
               <span>{category.name}</span>
             </button>
           ))}
@@ -102,18 +114,26 @@ export default function HomePage() {
         <div className="section-header">
           <div>
             <h2>Recommended</h2>
-            <p className="section-subtitle">Popular products around campus</p>
+            <p className="section-subtitle">
+              Popular products around campus
+            </p>
           </div>
-          <button className="view-all">View all →</button>
+
+          <button className="view-all">
+            View all →
+          </button>
         </div>
 
         <div className="product-grid">
           {products.map((product) => (
-            <article className="product-card overflow-hidden" key={product.name}>
-              
-              {/* ส่วนรูป 3D Emoji */}
+            <article
+              className="product-card overflow-hidden"
+              key={product.name}
+            >
+              {/* เรียกใช้ Product3D สำหรับรูปภาพสินค้า */}
               <div className="product-image relative w-full h-48">
                 <Product3D imageUrl={product.image3D} alt={product.name} />
+
                 <button className="favorite absolute top-3 right-3 z-10">
                   ♡
                 </button>
@@ -121,11 +141,17 @@ export default function HomePage() {
 
               <div className="product-info">
                 <h3>{product.name}</h3>
-                <p className="seller">Sold by {product.seller}</p>
+
+                <p className="seller">
+                  Sold by {product.seller}
+                </p>
 
                 <div className="product-bottom">
                   <strong>฿{product.price}</strong>
-                  <button className="add-button">+</button>
+
+                  <button className="add-button">
+                    +
+                  </button>
                 </div>
               </div>
             </article>
@@ -137,30 +163,44 @@ export default function HomePage() {
       <section className="sell-banner">
         <div>
           <span>💰</span>
+
           <div>
             <h2>Have something to sell?</h2>
-            <p>Turn your unused items into extra cash.</p>
+            <p>
+              Turn your unused items into extra cash.
+            </p>
           </div>
         </div>
-        <button>+ Sell Product</button>
+
+        <button>
+          + Sell Product
+        </button>
       </section>
 
       {/* Mobile Bottom Navigation */}
       <nav className="bottom-nav">
         <button className="active">
-          <span>⌂</span> Home
+          <span>⌂</span>
+          Home
         </button>
+
         <button>
-          <span>⌕</span> Search
+          <span>⌕</span>
+          Search
         </button>
+
         <button className="sell-button">
           <span>＋</span>
         </button>
+
         <button>
-          <span>🛒</span> Cart
+          <span>🛒</span>
+          Cart
         </button>
+
         <button>
-          <span>👤</span> Profile
+          <span>👤</span>
+          Profile
         </button>
       </nav>
 
